@@ -1,0 +1,40 @@
+parent(john, ann). /*the fact that John is a parent of Ann*/
+parent(john, mike). %the fact that John is a parent of Mike
+parent(mary, mike).
+parent(mike, pat).
+parent(mike, bob).
+parent(pat, ben).
+
+parent(john, ann). %the fact that John is a parent of Ann
+parent(john, mike). %the fact that John is a parent of Mike
+parent(mary, mike).
+parent(mike, pat).
+parent(mike, bob).
+parent(pat, ben).
+parent(ann,niloy).
+
+female(mary). %the fact that Mary is a female
+female(ann).
+female(pat).
+male(john). %the fact that John is a male
+male(mike).
+male(bob).
+male(ben).
+male(niloy).
+
+mother(X,Y) :- parent(X, Y), female(X). %definition of the predicate mother
+father(X,Y) :- parent(X, Y), male(X).
+
+sister(X,Y):- parent(Z,X),parent(Z,Y),female(X),X\=Y.
+brother(Y,X):- parent(Z,X),parent(Z,Y),male(Y),Y\=X.
+
+grandmother(Z,Y):- parent(Z,X),parent(X,Y),female(Z),X\=Y,Z\=Y,X\=Z.
+grandfather(Z,Y):- parent(Z,X),parent(X,Y),male(Z),X\=Y,Z\=Y,X\=Z.
+
+son(X,Y):-parent(Y,X),male(Y),X\=Y.
+daugther(X,Y):-parent(Y,X),female(X),X\=Y.
+
+greatgrandfather(Z,Y):-grandfather(Z,X),parent(X,Y),male(Z),X\=Y,Z\=X,Z\=Y.
+greatgrandmother(Z,Y):-grandmother(Z,X),parent(X,Y),female(Z),X\=Y,Z\=X,Z\=Y.
+
+cousin(P,Y):-parent(Z,X),parent(Z,P),parent(X,Y),parent(P,R),P\=Y,R\=Y,X\=Y,Z\=Y,P\=R,P\=X,R\=X
