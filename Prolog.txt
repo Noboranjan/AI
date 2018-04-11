@@ -37,4 +37,4 @@ daugther(X,Y):-parent(Y,X),female(X),X\=Y.
 greatgrandfather(Z,Y):-grandfather(Z,X),parent(X,Y),male(Z),X\=Y,Z\=X,Z\=Y.
 greatgrandmother(Z,Y):-grandmother(Z,X),parent(X,Y),female(Z),X\=Y,Z\=X,Z\=Y.
 
-cousin(P,Y):-parent(Z,X),parent(Z,P),parent(X,Y),parent(P,R),P\=Y,R\=Y,X\=Y,Z\=Y,P\=R,P\=X,R\=X
+cousin(R,Y):-parent(Z,X),parent(Z,P),parent(X,Y),parent(P,R),P\=Y,R\=Y,X\=Y,Z\=Y,P\=R,P\=Z,R\=X,R\=Z,X\=Z.
